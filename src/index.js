@@ -31,7 +31,7 @@ class YoutubeMusicApi {
         })
         this.client.interceptors.response.use(res => {
             if (res.headers.hasOwnProperty('set-cookie')) {
-                if (res.headers['set-cookie'] instanceof Array) {
+                if (Array.isArray(res.headers['set-cookie'])) {
                     res.headers['set-cookie'].map(value => {
                         this.cookies.setCookieSync(tough.Cookie.parse(value), res.config.baseURL)
                     })
